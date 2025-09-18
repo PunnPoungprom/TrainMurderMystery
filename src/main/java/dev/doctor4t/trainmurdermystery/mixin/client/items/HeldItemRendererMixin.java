@@ -50,7 +50,7 @@ public class HeldItemRendererMixin {
                     target = "Lnet/minecraft/item/ItemStack;areEqual(Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z"
             )
     )
-    private boolean ignoreNbtForSpecificItem(boolean original, @Local(ordinal = 0) ItemStack newItemStack) {
+    private boolean tmm$ignoreNbtUpdateForRevolver(boolean original, @Local(ordinal = 0) ItemStack newItemStack) {
         if (!original) {
             if (this.mainHand.isOf(TMMItems.REVOLVER) && newItemStack.isOf(TMMItems.REVOLVER)) {
                 return true;

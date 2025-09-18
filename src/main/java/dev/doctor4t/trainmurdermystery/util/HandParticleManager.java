@@ -33,7 +33,7 @@ public class HandParticleManager {
         Vector3f up = new Vector3f(0, 1, 0);
 
         for (HandParticle p : particles) {
-            RenderLayer rl = RenderLayer.getEntityTranslucent(p.texture);
+            RenderLayer rl = RenderLayer.getEntityTranslucentEmissive(p.texture);
             VertexConsumer consumer = vertexConsumers.getBuffer(rl);
 
             float half = p.size * 0.5f;
@@ -59,10 +59,10 @@ public class HandParticleManager {
             Vector3f c3 = new Vector3f(center).add(new Vector3f(right).mul( half)).add(new Vector3f(up).mul( half));
             Vector3f c4 = new Vector3f(center).add(new Vector3f(right).mul( half)).add(new Vector3f(up).mul(-half));
 
-            putVertex(consumer, model, c1, u0, v1, light);
-            putVertex(consumer, model, c2, u0, v0, light);
-            putVertex(consumer, model, c3, u1, v0, light);
-            putVertex(consumer, model, c4, u1, v1, light);
+            putVertex(consumer, model, c1, u0, v1, LightmapTextureManager.MAX_LIGHT_COORDINATE);
+            putVertex(consumer, model, c2, u0, v0, LightmapTextureManager.MAX_LIGHT_COORDINATE);
+            putVertex(consumer, model, c3, u1, v0, LightmapTextureManager.MAX_LIGHT_COORDINATE);
+            putVertex(consumer, model, c4, u1, v1, LightmapTextureManager.MAX_LIGHT_COORDINATE);
         }
     }
 

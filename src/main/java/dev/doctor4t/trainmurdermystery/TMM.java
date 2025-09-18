@@ -48,10 +48,9 @@ public class TMM implements ModInitializer {
 
 }
 
-// TODO: Add tasks
-// TODO: Add wheels and tracks
-// TODO: Map reset system
-// TODO: Add lobby
-// TODO: Nicer starting phase + UI
-// TODO: System that remembers previous roles and allows cycling of roles
-// TODO: Limit spectators to a radius around the train
+// TODO: Add tasks (2-3 hours)
+// TODO: Add wheels and tracks (1h)
+// TODO: Map reset system (1h)
+// TODO: Add lobby (1h)
+// TODO: Nicer starting phase + UI (2h)
+// TODO: System that remembers previous roles and allows cycling of roles (3h)

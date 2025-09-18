@@ -74,9 +74,9 @@ public class RevolverItem extends Item {
 
                 HandParticle particle_animated = new HandParticle(0.1f, 0.275f, -0.2f,
                         0, 0, 0,
-                        0.5f, 8,
+                        0.4f, 1,
                         TMM.id("textures/particle/gunshot.png"),
-                        17, false);
+                        1, false);
                 TMMClient.handParticleManager.spawn(particle_animated);
 
                 return TypedActionResult.consume(user.getStackInHand(hand));

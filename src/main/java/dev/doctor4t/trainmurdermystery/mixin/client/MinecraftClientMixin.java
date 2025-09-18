@@ -27,7 +27,7 @@ public class MinecraftClientMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/render/item/HeldItemRenderer;resetEquipProgress(Lnet/minecraft/util/Hand;)V"
             ))
-    private boolean stainedLenses$cancelSpyglassUpdateAnimation(HeldItemRenderer instance, Hand hand) {
+    private boolean tmm$cancelRevolverUpdateAnimation(HeldItemRenderer instance, Hand hand) {
         return !MinecraftClient.getInstance().player.getStackInHand(hand).isOf(TMMItems.REVOLVER);
     }
 }

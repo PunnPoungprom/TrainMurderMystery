@@ -65,7 +65,7 @@ public class TMMClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        //Initialize ScreenParticle
+        // Initialize ScreenParticle
         handParticleManager = new HandParticleManager();
         particleMap = new HashMap<>();
 
