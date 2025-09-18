@@ -89,6 +89,7 @@ public interface TMMBlocks {
     Block GOLDEN_GLASS_PANEL = registrar.createWithItem("golden_glass_panel", new GlassPanelBlock(AbstractBlock.Settings.create().strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(Blocks::never)), TMMItems.DECORATION_GROUP);
     Block PRIVACY_GLASS_PANEL = registrar.createWithItem("privacy_glass_panel", new PrivacyGlassPanelBlock(AbstractBlock.Settings.create().strength(0.3f).sounds(BlockSoundGroup.GLASS).nonOpaque().allowsSpawning(Blocks::never)), TMMItems.DECORATION_GROUP);
     Block CULLING_GLASS = registrar.createWithItem("culling_glass", new CullingGlassBlock(AbstractBlock.Settings.create().solid().strength(-1.0f, 3600000.0f).allowsSpawning(Blocks::never).sounds(BlockSoundGroup.GLASS)), TMMItems.DECORATION_GROUP);
+
     // Stones
     Block MARBLE = registrar.createWithItem("marble", new Block(AbstractBlock.Settings.create().strength(2f).sounds(BlockSoundGroup.CALCITE)), TMMItems.BUILDING_GROUP);
     Block MARBLE_STAIRS = registrar.createWithItem("marble_stairs", new StairsBlock(MARBLE.getDefaultState(), AbstractBlock.Settings.copy(MARBLE)), TMMItems.BUILDING_GROUP);
@@ -103,6 +104,12 @@ public interface TMMBlocks {
     Block MARBLE_TILE_STAIRS = registrar.createWithItem("marble_tile_stairs", new StairsBlock(MARBLE_TILES.getDefaultState(), AbstractBlock.Settings.copy(MARBLE_TILES)), TMMItems.BUILDING_GROUP);
     Block MARBLE_TILE_SLAB = registrar.createWithItem("marble_tile_slab", new SlabBlock(AbstractBlock.Settings.copy(MARBLE_TILES)), TMMItems.BUILDING_GROUP);
     Block MARBLE_TILE_WALL = registrar.createWithItem("marble_tile_wall", new WallBlock(AbstractBlock.Settings.copy(MARBLE_TILES).solid()), TMMItems.BUILDING_GROUP);
+
+    // Carpets
+    Block RED_MOQUETTE = registrar.createWithItem("red_moquette", new Block(AbstractBlock.Settings.copy(Blocks.RED_WOOL).strength(-1.0f, 3600000.0f)), TMMItems.BUILDING_GROUP);
+    Block BROWN_MOQUETTE = registrar.createWithItem("brown_moquette", new Block(AbstractBlock.Settings.copy(Blocks.BROWN_WOOL).strength(-1.0f, 3600000.0f)), TMMItems.BUILDING_GROUP);
+    Block BLUE_MOQUETTE = registrar.createWithItem("blue_moquette", new Block(AbstractBlock.Settings.copy(Blocks.BLUE_WOOL).strength(-1.0f, 3600000.0f)), TMMItems.BUILDING_GROUP);
+
     // Woods
     Block MAHOGANY_PLANKS = registrar.createWithItem("mahogany_planks", new Block(AbstractBlock.Settings.copy(Blocks.MANGROVE_PLANKS).strength(-1.0f, 3600000.0f).sounds(BlockSoundGroup.CHERRY_WOOD)), TMMItems.BUILDING_GROUP);
     Block MAHOGANY_STAIRS = registrar.createWithItem("mahogany_stairs", new StairsBlock(MAHOGANY_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(MAHOGANY_PLANKS)), TMMItems.BUILDING_GROUP);

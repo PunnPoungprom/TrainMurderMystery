@@ -328,6 +328,9 @@ public class TrainMurderMysteryModelGen extends FabricModelProvider {
         this.registerFamily(generator, TMMBlocks.Family.SMOOTH_NAVY_STEEL);
         this.registerPanel(generator, TMMBlocks.SMOOTH_NAVY_STEEL_PANEL, TMMBlocks.SMOOTH_NAVY_STEEL);
         this.registerParticleBlockWithItemSprite(generator, TMMBlocks.WHEEL, TMMBlocks.DARK_STEEL);
+        generator.registerSimpleCubeAll(TMMBlocks.RED_MOQUETTE);
+        generator.registerSimpleCubeAll(TMMBlocks.BROWN_MOQUETTE);
+        generator.registerSimpleCubeAll(TMMBlocks.BLUE_MOQUETTE);
     }
 
     @Override

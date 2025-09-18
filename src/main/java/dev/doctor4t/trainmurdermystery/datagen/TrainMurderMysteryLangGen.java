@@ -196,6 +196,9 @@ public class TrainMurderMysteryLangGen extends FabricLanguageProvider {
         builder.add(TMMBlocks.SMOOTH_NAVY_STEEL_PANEL, "Smooth Navy Steel panel");
         builder.add(TMMBlocks.SMOOTH_NAVY_STEEL_WALL, "Smooth Navy Steel Wall");
         builder.add(TMMBlocks.WHEEL, "Wheel");
+        builder.add(TMMBlocks.RED_MOQUETTE, "Red Moquette");
+        builder.add(TMMBlocks.BROWN_MOQUETTE, "Brow Moquette");
+        builder.add(TMMBlocks.BLUE_MOQUETTE, "Blue Moquette");
 
         builder.add(TMMItems.KEY, "Key");
         builder.add(TMMItems.LOCKPICK, "Lockpick");
