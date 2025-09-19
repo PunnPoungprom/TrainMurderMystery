@@ -2,6 +2,7 @@ package dev.doctor4t.trainmurdermystery.cca;
 
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.game.TMMGameConstants;
+import dev.doctor4t.trainmurdermystery.game.TMMGameLoop;
 import dev.doctor4t.trainmurdermystery.util.Carriage;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -51,6 +52,7 @@ public class PlayerMoodComponent implements AutoSyncedComponent, ServerTickingCo
     @Environment(EnvType.CLIENT)
     public void renderHud(DrawContext context, RenderTickCounter tickCounter) {
         if (!TMMComponents.GAME.get(this.player.getWorld()).isRunning()) return;
+        if (!TMMGameLoop.isPlayerAliveAndSurvival(this.player)) return;
         if (!Objects.equals(this.previousPreferenceText, this.preferenceText)) {
             this.preferenceTextAlpha = MathHelper.lerp(tickCounter.getTickDelta(true) / 4, this.preferenceTextAlpha, 0f);
             if (this.preferenceTextAlpha <= 0.01f) this.previousPreferenceText = this.preferenceText;
@@ -115,7 +117,7 @@ public class PlayerMoodComponent implements AutoSyncedComponent, ServerTickingCo
                 shouldSync = true;
             }
         }
-        if (this.currentPreference.isFulfilled(this.player)) {
+        if (this.currentPreference.isFulfilled(this.player) || !TMMGameLoop.isPlayerAliveAndSurvival(this.player)) {
             if (!this.fulfilled) shouldSync = true;
             this.fulfilled = true;
         } else {
