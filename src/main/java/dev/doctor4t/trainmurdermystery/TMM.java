@@ -51,14 +51,15 @@ public class TMM implements ModInitializer {
 // TODO: System that remembers previous roles and allows cycling of roles
 // TODO: Train chimney smoke + ringable horn, triggers game start in lobby
 // TODO: Sync scenery
-// TODO: Up sleep chances
 // TODO: Fix vents
 // TODO: Sleep chat fix
 // TODO: Fix spectators being shot by guns
-// TODO: Better tasks
-// TODO: - Get a snack from restaurant task
-// TODO: - Get a drink from the bar task
-// TODO: Target system only for bonus
+// TODO: Better tasks: mood goes down gradually, completing tasks is a single action to bring it back up
+// TODO: - Get a snack from restaurant task (need food platter block + custom food item)
+// TODO: - Get a drink from the bar task (need drinks platter block + custom drink item, whiskey glass?)
+// TODO: - Up sleep chances and make it a sleep 10s task
+// TODO: - Get some fresh air reduced to going walking outside for 10s
+// TODO: Remove target system and make the win condition a kill count
 // TODO: Cabin button from inside
 // TODO: Detective drops gun on innocent kill
 // TODO: Make the detective drop the gun on killed

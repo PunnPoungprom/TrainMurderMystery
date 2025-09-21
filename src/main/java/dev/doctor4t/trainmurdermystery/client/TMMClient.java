@@ -182,8 +182,6 @@ public class TMMClient implements ClientModInitializer {
                     PLAYER_ENTRIES_CACHE.put(player.getUuid(), MinecraftClient.getInstance().getNetworkHandler().getPlayerListEntry(player.getUuid()));
                 }
             }
-            System.out.println(gameComponent.getGameTime());
-
             // Select last slot at start of game
             if (!prevGameRunning && gameComponent.isRunning()) {
                 MinecraftClient.getInstance().player.getInventory().selectedSlot = 8;

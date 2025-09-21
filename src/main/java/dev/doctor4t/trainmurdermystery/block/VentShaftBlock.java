@@ -43,17 +43,6 @@ public class VentShaftBlock extends Block {
     public static final BooleanProperty WEST = Properties.WEST;
     public static final BooleanProperty UP = Properties.UP;
     public static final BooleanProperty DOWN = Properties.DOWN;
-    protected static final VoxelShape BASE_SHAPE = VoxelShapes.combineAndSimplify(
-            VoxelShapes.fullCube(),
-            Block.createCuboidShape(2, 2, 2, 14, 14, 14),
-            BooleanBiFunction.ONLY_FIRST);
-    protected static final VoxelShape NORTH_OPENING = Block.createCuboidShape(2, 2, 0, 14, 14, 2);
-    protected static final VoxelShape EAST_OPENING = Block.createCuboidShape(14, 2, 2, 16, 14, 14);
-    protected static final VoxelShape SOUTH_OPENING = Block.createCuboidShape(2, 2, 14, 14, 14, 16);
-    protected static final VoxelShape WEST_OPENING = Block.createCuboidShape(0, 2, 2, 2, 14, 14);
-    protected static final VoxelShape UP_OPENING = Block.createCuboidShape(2, 14, 2, 14, 16, 14);
-    protected static final VoxelShape DOWN_OPENING = Block.createCuboidShape(2, 0, 2, 14, 2, 14);
-    protected static final Function<BlockState, VoxelShape> STATE_TO_SHAPE = Util.memoize(VentShaftBlock::calculateShape);
 
     public VentShaftBlock(Settings settings) {
         super(settings);
@@ -66,28 +55,9 @@ public class VentShaftBlock extends Block {
                 .with(DOWN, true));
     }
 
-    private static VoxelShape calculateShape(BlockState state) {
-        VoxelShape shape = BASE_SHAPE;
-        for (Direction direction : Direction.values())
-            if (!state.get(ConnectingBlock.FACING_PROPERTIES.get(direction)))
-                shape = VoxelShapes.combineAndSimplify(shape, VentShaftBlock.getOpeningShape(direction), BooleanBiFunction.ONLY_FIRST);
-        return shape;
-    }
-
-    private static VoxelShape getOpeningShape(Direction direction) {
-        return switch (direction) {
-            case DOWN -> DOWN_OPENING;
-            case UP -> UP_OPENING;
-            case NORTH -> NORTH_OPENING;
-            case SOUTH -> SOUTH_OPENING;
-            case WEST -> WEST_OPENING;
-            case EAST -> EAST_OPENING;
-        };
-    }
-
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return STATE_TO_SHAPE.apply(state);
+        return VoxelShapes.fullCube();
     }
 
     @Override
@@ -119,31 +89,5 @@ public class VentShaftBlock extends Block {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(NORTH, EAST, SOUTH, WEST, UP, DOWN);
-    }
-
-    @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!stack.isEmpty()) {
-            return ItemActionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
-        }
-        return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
-    }
-
-    @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos blockPos, PlayerEntity player, BlockHitResult hit) {
-        Vec3d centerPos = blockPos.toCenterPos();
-        Vec3d pos = hit.getPos();
-        if (!player.isCrawling()
-                && MathHelper.fractionalPart(pos.getX()) != 0
-                && MathHelper.fractionalPart(pos.getY()) != 0
-                && MathHelper.fractionalPart(pos.getZ()) != 0) {
-            player.setPose(EntityPose.SWIMMING);
-            player.setOnGround(true);
-            player.setPosition(centerPos.getX(), blockPos.getY() + 0.125f, centerPos.getZ());
-            player.playSound(TMMSounds.VENT_SHAFT.getStepSound(), 1.0f, 1.0f);
-            return ActionResult.success(world.isClient);
-        }
-
-        return super.onUse(state, world, blockPos, player, hit);
     }
 }
