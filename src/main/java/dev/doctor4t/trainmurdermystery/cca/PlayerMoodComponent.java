@@ -85,19 +85,19 @@ public class PlayerMoodComponent implements AutoSyncedComponent, ServerTickingCo
     }
 
     private @Nullable TrainTask generateTask() {
-        var map = new HashMap<Float, Task>();
+        var map = new HashMap<Task, Float>();
         var total = 0f;
         for (var task : Task.values()) {
             if (this.tasks.containsKey(task)) continue;
             var weight = 1f / this.timesGotten.getOrDefault(task, 1);
-            map.put(weight, task);
+            map.put(task, weight);
             total += weight;
         }
         var random = this.player.getRandom().nextFloat() * total;
         for (var entry : map.entrySet()) {
-            random -= entry.getKey();
+            random -= entry.getValue();
             if (random <= 0) {
-                return switch (entry.getValue()) {
+                return switch (entry.getKey()) {
                     case SLEEP -> new SleepTask(TMMGameConstants.SLEEP_TASK_DURATION);
                     case OUTSIDE -> new OutsideTask(TMMGameConstants.OUTSIDE_TASK_DURATION);
                     case EAT -> new EatTask();
