@@ -7,6 +7,9 @@ import static net.fabricmc.fabric.api.event.EventFactory.createArrayBacked;
 
 public interface AllowPlayerStabDeath {
 
+    /**
+     * Callback for determining whether a player should die when they are got stab.
+     */
     Event<AllowPlayerStabDeath> EVENT = createArrayBacked(AllowPlayerStabDeath.class, listeners -> player -> {
         for (AllowPlayerStabDeath listener : listeners) {
             if (!listener.allowStab(player)) {
