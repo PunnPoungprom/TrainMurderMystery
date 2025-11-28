@@ -7,7 +7,11 @@ import net.minecraft.world.World;
 
 import static net.fabricmc.fabric.api.event.EventFactory.createArrayBacked;
 
-public final class GameEvent {
+public final class GameEvents {
+
+    private GameEvents() {
+    }
+
     public static final Event<OnGameStart> ON_GAME_START = createArrayBacked(OnGameStart.class, listeners -> (gameMode) -> {
         for (OnGameStart listener : listeners) {
             listener.onGameStart(gameMode);

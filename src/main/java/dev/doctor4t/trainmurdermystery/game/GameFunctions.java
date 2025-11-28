@@ -3,7 +3,7 @@ package dev.doctor4t.trainmurdermystery.game;
 import com.google.common.collect.Lists;
 import dev.doctor4t.trainmurdermystery.TMM;
 import dev.doctor4t.trainmurdermystery.api.GameMode;
-import dev.doctor4t.trainmurdermystery.api.event.GameEvent;
+import dev.doctor4t.trainmurdermystery.api.event.GameEvents;
 import dev.doctor4t.trainmurdermystery.cca.*;
 import dev.doctor4t.trainmurdermystery.compat.TrainVoicePlugin;
 import dev.doctor4t.trainmurdermystery.entity.FirecrackerEntity;
@@ -112,13 +112,13 @@ public class GameFunctions {
         GameWorldComponent gameComponent = GameWorldComponent.KEY.get(serverWorld);
         List<ServerPlayerEntity> readyPlayerList = getReadyPlayerList(serverWorld);
 
-        GameEvent.ON_GAME_START.invoker().onGameStart(gameComponent.getGameMode());
+        GameEvents.ON_GAME_START.invoker().onGameStart(gameComponent.getGameMode());
         baseInitialize(serverWorld, gameComponent, readyPlayerList);
         gameComponent.getGameMode().initializeGame(serverWorld, gameComponent, readyPlayerList);
 
         gameComponent.sync();
 
-        GameEvent.ON_FINISH_INITIALIZE.invoker().onFinishInitialize(serverWorld, gameComponent);
+        GameEvents.ON_FINISH_INITIALIZE.invoker().onFinishInitialize(serverWorld, gameComponent);
     }
 
     private static void baseInitialize(ServerWorld serverWorld, GameWorldComponent gameComponent, List<ServerPlayerEntity> players) {
@@ -233,7 +233,7 @@ public class GameFunctions {
 
     public static void finalizeGame(ServerWorld world) {
         GameWorldComponent gameComponent = GameWorldComponent.KEY.get(world);
-        GameEvent.ON_GAME_STOP.invoker().onGameStop(gameComponent.getGameMode());
+        GameEvents.ON_GAME_STOP.invoker().onGameStop(gameComponent.getGameMode());
         gameComponent.getGameMode().finalizeGame(world, gameComponent);
 
         WorldBlackoutComponent.KEY.get(world).reset();
@@ -258,7 +258,7 @@ public class GameFunctions {
         trainComponent.setTime(0);
         gameComponent.sync();
 
-        GameEvent.ON_FINISH_FINALIZE.invoker().onFinishFinalize(world, gameComponent);
+        GameEvents.ON_FINISH_FINALIZE.invoker().onFinishFinalize(world, gameComponent);
     }
 
     public static void resetPlayer(ServerPlayerEntity player) {
